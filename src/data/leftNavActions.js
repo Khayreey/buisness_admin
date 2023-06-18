@@ -6,8 +6,8 @@ const leftNavActions = [
   } ,
   {
     lists: [
+      { link: "/buisness", txt: "All Business" },
       { link: "/addBuisness", txt: "Add New Business" },
-      { link: "/", txt: "All Business" },
       { link: "/", txt: "Business Orders" },
     ],
     listAction: "Manage Business",
@@ -15,7 +15,7 @@ const leftNavActions = [
   },
   {
     lists: [
-      { link: "/", txt: "Get All Orders" },
+      { link: "/orders", txt: "Get All Orders" },
     ],
     listAction: "Manage Orders",
     icon : 'fa-solid fa-cart-shopping'
@@ -23,7 +23,7 @@ const leftNavActions = [
   
   {
     lists: [
-      { link: "/", txt: "Get All Customers" },
+      { link: "/customers", txt: "Get All Customers" },
     ],
     listAction: "Manage Customers",
     icon : 'fas fa-users'

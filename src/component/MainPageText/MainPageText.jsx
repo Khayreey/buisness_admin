@@ -5,7 +5,7 @@ const MainPageText = ({ text }) => {
     <p
       className="p-3 display-6 text-primary  
     border-bottom border-4 border-muted
-    
+    ms-4
     "
       style={{ width: "max-content" }}
     >

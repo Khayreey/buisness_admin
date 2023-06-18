@@ -2,8 +2,10 @@ import React from "react";
 import { Formik } from "formik";
 import { Button, Form } from "react-bootstrap";
 import CustomInput from "../CustomInput/CustomInput";
-import {  faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import CustomSelectInput from '../CustomSelectInput/CustomSelectInput'
+import {  faEnvelope, faPhone , faMapLocation , faBusinessTime , faList} from "@fortawesome/free-solid-svg-icons";
 import MainPageText from "../MainPageText/MainPageText";
+import addBuisnessSchema from "../../validationSchema/addBuisnessSchema";
 const AddBuisnessForm = () => {
   return (
     <div className="container my-5 pb-4 bg-white rounded-2 shadow-sm">
@@ -14,18 +16,19 @@ const AddBuisnessForm = () => {
           phone: "",
           email: "",
           address: "",
-          type: "",
+          type: "Choose Buisness Type",
         }}
-        onSubmit={() => {}}
+        onSubmit={() => {}} 
+        validationSchema={addBuisnessSchema}
       >
         {({ handleSubmit }) => {
           return (
-            <Form>
+            <Form onSumbit={handleSubmit}>
               <CustomInput
                 name='name' 
                 label="Name"
                 placeholder="Enter Buisness Name"
-                icon={faEnvelope}
+                icon={faBusinessTime}
               />
                <CustomInput
                 name='email' 
@@ -37,19 +40,20 @@ const AddBuisnessForm = () => {
                 name='phone' 
                 label="Phone"
                 placeholder="Enter Buisness Phone"
-                icon={faEnvelope}
+                icon={faPhone}
               />
                 <CustomInput
                 name='address' 
                 label="Address"
                 placeholder="Enter Buisness Address"
-                icon={faEnvelope}
+                icon={faMapLocation}
               />
-                <CustomInput
+                <CustomSelectInput
                 name='type' 
                 label="Type"
                 placeholder="Choose Buisness Type"
-                icon={faEnvelope}
+                icon={faList}
+                options={[  {type : 'resturant'} ,  {type :  "super market"}]}
               />
               <Button type='submit' className='w-100 p-2 mt-4'>Add</Button>
             </Form>

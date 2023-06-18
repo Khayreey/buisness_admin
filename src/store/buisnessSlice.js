@@ -5,15 +5,18 @@ const buisnessSlice = createSlice({
     initialState : {
         allBuisness : [] , 
         selectedBuisness : {} ,
-        isWaitingForGetBusiness : false , 
+        isWaitingForGetBusiness : true , 
         numOfallBuisness : 0 , 
-        errorInGetBusiness : {}
+        errorInGetBusiness : null
     }
     ,
     reducers : {
         getBuisnessFromDb(state , action){
             state.allBuisness = action.payload 
             state.numOfallBuisness = action.payload.length
+            state.isWaitingForGetBusiness = false
+            state.errorInGetBusiness = null
+
         } , 
         setWaitingTrue(state){
             state.isWaitingForGetBusiness = true
@@ -24,8 +27,11 @@ const buisnessSlice = createSlice({
         setErrorInGetBusiness(state , action) {
             state.errorInGetBusiness = action.payload
         } , 
+        setSelectingBuisness(state,action){
+            state.selectedBuisness = action.payload
+        } ,
         clearBusinessError(state){
-            state.errorInGetBusiness = {}
+            state.errorInGetBusiness = null
         }
     }
 })

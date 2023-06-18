@@ -1,15 +1,14 @@
 import { useState } from "react";
 
 import { useField } from "formik";
-import { Form, InputGroup } from "react-bootstrap";
+import { Form, InputGroup, Placeholder } from "react-bootstrap";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CustomMultiSelectInput = ({ type, icon, label, ...props }) => {
-  const [showPass, setShowPass] = useState(false);
+const CustomSelectInput = ({ type, icon, label, options , placeholder, ...props }) => {
   const [field, meta] = useField(props);
-
   
+  console.log(meta.value);
   return (
     <Form.Group className="p-2">
       {label ? (
@@ -22,15 +21,25 @@ const CustomMultiSelectInput = ({ type, icon, label, ...props }) => {
         <InputGroup.Text>
           <FontAwesomeIcon icon={icon} />
         </InputGroup.Text>
-        <Form.Control
-          
+        <Form.Select
           {...field}
           {...props}
           isInvalid={meta.touched && !!meta.error}
           isValid={meta.touched && !Boolean(meta.error)}
-        />
+          className={ meta.value === placeholder && 'text-muted' } 
+        >
+         <option className='text-muted'>{placeholder}</option>
+         {options.map((e,index)=>{
+          return (
+            <>
+            
+            <option key={index} value={e.type}>{e.type}</option>
+            </>
+          )
+         })}
+          
+        </Form.Select>
 
-        
         <Form.Control.Feedback className="alert alert-danger" type="invalid">
           {meta.error}
         </Form.Control.Feedback>
@@ -38,4 +47,4 @@ const CustomMultiSelectInput = ({ type, icon, label, ...props }) => {
     </Form.Group>
   );
 };
-export default CustomMultiSelectInput;
+export default CustomSelectInput;

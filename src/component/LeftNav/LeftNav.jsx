@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "./leftNav.css";
 import DropDownMenu from "../DropDownMenu/DropDownMenu";
 import leftNavActions from "../../data/leftNavActions";
-import { Button } from "react-bootstrap";
 
-const LeftNav = ({ isNotActive }) => {
+
+const LeftNav = ({ isNotActive , setNotActive }) => {
   const [isDropdownActive, setDropdownActive] = useState(false);
 
   const setWichListActive = (index) => {

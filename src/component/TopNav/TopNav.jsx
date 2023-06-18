@@ -17,7 +17,7 @@ import { faMagnifyingGlass, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const TopNav = ({ isNotActive, setNotActive }) => {
   var barsIcon = <i className="fas fa-bars fs-2" style={{color : 'rgb(2, 36, 71)'}}></i>;
-  var crossIcon = <i class="fa-solid fa-xmark fs-2"></i>;
+  var crossIcon = <i className="fa-solid fa-xmark fs-2"></i>;
   const [serchFilter, setSearchFilter] = useState("buisness");
   const handleSearchFilter = (e) => {
     setSearchFilter(() => {

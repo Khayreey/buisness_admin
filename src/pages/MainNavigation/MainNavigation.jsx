@@ -17,7 +17,7 @@ const MainNavigation = () => {
       <div className="d-flex">
         <LeftNav isNotActive={isNotActive} setNotActive={setNotActive} />
         <div
-          className="outlet container-fluid ms-4 mt-4"
+          className="outlet container-fluid mt-4"
           style={{
             paddingLeft: isNotActive ? "4rem" : "16rem",
           }}
