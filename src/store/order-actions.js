@@ -7,8 +7,7 @@ export const getAllOrders = () => {
 
       const response = await data.json();
 
-       console.log(response)
-      // let jsonData = JSON.parse(response)
+      
      
       return response.orders
     };

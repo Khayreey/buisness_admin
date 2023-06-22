@@ -17,15 +17,20 @@ import { getAllCustomers } from "./store/customer-actions";
 import {getAllOrders} from './store/order-actions'
 import Customers from "./pages/Customers/Customers";
 import SingleCustomer from "./pages/SingleCustomer/SingleCustomer";
+import SingleDriver from "./pages/SingleDriver/SingleDriver";
 import Orders from "./pages/Orders/Orders";
-
+import {getAllDrivers , getAllAvailableDrivers , getAllUnAvailableDrivers , getAllBusyDrivers}
+from './store/driver-actions'
+import Drivers from "./pages/Drivers/Drivers";
 function App() {
   const dispatch = useDispatch()
- 
+  const isRequireRender = useSelector(
+    (state) => state.buisness.isRequireRender
+  );
   useEffect(()=>{
     dispatch(getAllBusiness())
     
-  },[])
+  },[isRequireRender])
 
  useEffect(()=>{
   dispatch(getAllCustomers())
@@ -33,6 +38,14 @@ function App() {
 
  useEffect(()=>{
   dispatch(getAllOrders())
+ },[])
+
+
+ useEffect(()=>{
+  dispatch(getAllDrivers())
+  dispatch(getAllAvailableDrivers())
+  dispatch(getAllUnAvailableDrivers())
+  dispatch(getAllBusyDrivers())
  },[])
   const routers = createBrowserRouter([
     {
@@ -46,6 +59,8 @@ function App() {
         { path: "/buisness/:id/:menu", element: <BuisnessMenu /> },
         { path: "/customers", element: <Customers /> },
         { path: "/customers/:id", element: <SingleCustomer /> },
+        { path: "/drivers", element: <Drivers /> },
+        { path: "/drivers/:id", element: <SingleDriver /> },
         { path: "/orders", element: <Orders /> },
         { path: "/contactus", element: <ContactUs /> },
       ],

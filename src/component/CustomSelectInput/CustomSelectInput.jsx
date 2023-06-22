@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CustomSelectInput = ({ type, icon, label, options , placeholder, ...props }) => {
   const [field, meta] = useField(props);
   
-  console.log(meta.value);
+ 
   return (
     <Form.Group className="p-2">
       {label ? (
@@ -28,7 +28,7 @@ const CustomSelectInput = ({ type, icon, label, options , placeholder, ...props 
           isValid={meta.touched && !Boolean(meta.error)}
           className={ meta.value === placeholder && 'text-muted' } 
         >
-         <option className='text-muted'>{placeholder}</option>
+         <option className='text-muted' key={10}>{placeholder}</option>
          {options.map((e,index)=>{
           return (
             <>

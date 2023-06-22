@@ -7,7 +7,9 @@ const buisnessSlice = createSlice({
         selectedBuisness : {} ,
         isWaitingForGetBusiness : true , 
         numOfallBuisness : 0 , 
-        errorInGetBusiness : null
+        errorInGetBusiness : null , 
+        isRequireRender : false , 
+        
     }
     ,
     reducers : {
@@ -16,7 +18,6 @@ const buisnessSlice = createSlice({
             state.numOfallBuisness = action.payload.length
             state.isWaitingForGetBusiness = false
             state.errorInGetBusiness = null
-
         } , 
         setWaitingTrue(state){
             state.isWaitingForGetBusiness = true
@@ -32,7 +33,11 @@ const buisnessSlice = createSlice({
         } ,
         clearBusinessError(state){
             state.errorInGetBusiness = null
-        }
+        } , 
+        requireRender(state){
+            state.isRequireRender = !state.isRequireRender
+        } , 
+       
     }
 })
 export const businessActions = buisnessSlice.actions

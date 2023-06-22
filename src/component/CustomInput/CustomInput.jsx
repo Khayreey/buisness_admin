@@ -2,14 +2,15 @@ import { useState } from "react";
 
 import { useField } from "formik";
 import { Form, InputGroup } from "react-bootstrap";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash ,  faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const CustomInput = ({ type, icon, label, ...props }) => {
+const CustomInput = ({ isUpdate ,  type, icon, label, ...props }) => {
+  const [isUpdateField , setIsUpdateField] = useState(true)
   const [showPass, setShowPass] = useState(false);
   const [field, meta] = useField(props);
 
-  console.log(meta.error);
+  
   return (
     <Form.Group className="p-2">
       {label ? (
@@ -32,6 +33,7 @@ const CustomInput = ({ type, icon, label, ...props }) => {
           }
           {...field}
           {...props}
+          readOnly={isUpdate && isUpdateField}
           isInvalid={meta.touched && !!meta.error}
           isValid={meta.touched && !Boolean(meta.error)}
         />
@@ -44,10 +46,19 @@ const CustomInput = ({ type, icon, label, ...props }) => {
             ></FontAwesomeIcon>
           </InputGroup.Text>
         ) : null}
+       { isUpdate && isUpdate === true ?  
+       <InputGroup.Text>
+            <FontAwesomeIcon
+              onClick={() => setIsUpdateField((state) => !state)}
+              icon={faPenToSquare}
+            ></FontAwesomeIcon>
+         </InputGroup.Text>
+          : null}
         <Form.Control.Feedback className="alert alert-danger" type="invalid">
           {meta.error}
         </Form.Control.Feedback>
       </InputGroup>
+     
     </Form.Group>
   );
 };
