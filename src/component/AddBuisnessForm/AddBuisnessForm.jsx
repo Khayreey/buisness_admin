@@ -27,9 +27,7 @@ const AddBuisnessForm = () => {
     <Container fluid>
    
     <Container className="container my-5 pb-4 bg-white rounded-2 shadow-sm">
-      {isWaitingForGetBusiness ? (
-        <SkeltonLoader />
-      ) : isErrorGetBuisness ? (
+      { isErrorGetBuisness ? (
         <ErrorGettingData />
       ) : (
        
@@ -46,15 +44,15 @@ const AddBuisnessForm = () => {
           address: "",
           type: "Choose Buisness Type",
         }}
-        onSubmit={(values , {resetForm , setFieldError }) => {
-           
+        onSubmit={(values , {resetForm , setFieldError  }) => {
+         
             dispatch(addNewBuisness(values , resetForm , setFieldError))
         }} 
         validationSchema={addBuisnessSchema}
       >
         {({ handleSubmit }) => {
           return (
-            <Form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit} noValidate>
               <CustomInput
                 name='name' 
                 label="Name"

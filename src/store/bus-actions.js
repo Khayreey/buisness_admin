@@ -127,7 +127,7 @@ export const addNewBuisness = (businessInformation , reset , setError) => {
       dispatch(businessActions.setWaitingFalse());
       console.log(err.message);
       if(err.message === 'dup'){
-        setError('name' , 'Duplicate Buisness Name')
+       await setError('name' , 'Duplicate Buisness Name')
       }
       else {
         dispatch(businessActions.setErrorInGetBusiness(err));
