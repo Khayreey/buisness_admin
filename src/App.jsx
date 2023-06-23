@@ -22,6 +22,7 @@ import Orders from "./pages/Orders/Orders";
 import {getAllDrivers , getAllAvailableDrivers , getAllUnAvailableDrivers , getAllBusyDrivers}
 from './store/driver-actions'
 import Drivers from "./pages/Drivers/Drivers";
+import PendingBuisness from "./pages/PendingBuisness/PendingBuisness";
 function App() {
   const dispatch = useDispatch()
   const isRequireRender = useSelector(
@@ -56,7 +57,8 @@ function App() {
         { path: "/addBuisness", element: <AddBuisness /> },
         { path: "/buisness", element: <Buisness /> },
         { path: "/buisness/:id", element: <SingleBuisness /> },
-        { path: "/buisness/:id/:menu", element: <BuisnessMenu /> },
+        { path: "/pendingBuisness", element: <PendingBuisness /> },
+        
         { path: "/customers", element: <Customers /> },
         { path: "/customers/:id", element: <SingleCustomer /> },
         { path: "/drivers", element: <Drivers /> },

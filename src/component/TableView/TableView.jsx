@@ -3,7 +3,7 @@ import TableRowItem from "../TableRowItem/TableRowItem";
 import "./style.css";
 import PaginationTable from "../PaginationTable/PaginationTable";
 
-const TableView = ({ to, columns, data }) => {
+const TableView = ({ to, columns, data , isRequireApprove}) => {
 const [currentPage , setCurrentPage] = useState(1)
     //define the number of dishes per page 
 const numOfRowPerPage = 5
@@ -24,11 +24,12 @@ const rowsOfCurrentPage = data.slice(firstRowOfCurrentPage , lastRowOfCurrentPag
               {columns.map((column, index) =>
                 column === "_id" ? null : <th key={index}>{column}</th>
               )}
+              {isRequireApprove ? <th>Action</th> : null}
             </tr>
           </thead>
           <tbody>
             {rowsOfCurrentPage.map((item, index) => (
-              <TableRowItem key={index} columns={columns} item={item} to={to} />
+              <TableRowItem key={index} columns={columns} item={item} to={to} isRequireApprove={isRequireApprove}/>
             ))}
           </tbody>
         </table>

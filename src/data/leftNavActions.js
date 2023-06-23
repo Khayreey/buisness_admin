@@ -8,7 +8,7 @@ const leftNavActions = [
     lists: [
       { link: "/buisness", txt: "All Business" },
       { link: "/addBuisness", txt: "Add New Business" },
-      { link: "/", txt: "Business Orders" },
+      { link: "/pendingBuisness", txt: "Pending Business" },
     ],
     listAction: "Manage Business",
     icon : 'fa-solid fa-business-time' ,

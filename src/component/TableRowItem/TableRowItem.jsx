@@ -4,11 +4,13 @@ import { Button } from "react-bootstrap";
 import {useDispatch} from 'react-redux'
 import { businessActions } from "../../store/buisnessSlice";
 import { customersActions } from "../../store/customerSlice";
-const TableRowItem = ({ to, item, columns }) => {
+import { approvePendingBuisness } from "../../store/pendingBuisness-actions";
+const TableRowItem = ({ to, item, columns , isRequireApprove}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleNavigateClick = ()=>{
+     if(to === 'pending') return 
      if(!to) return 
      switch (to) {
       case 'buisness':
@@ -29,26 +31,26 @@ const TableRowItem = ({ to, item, columns }) => {
         }
     }
 
-    const handleBuisnessMenu = (e)=>{
-        e.stopPropagation()
-        navigate(`/${to}/${Object.values(item["_id"])[0]}/${Object.values(item["menu"])[0]}`)
-    }
-
+   const handleApprove = ()=>{
+    dispatch(approvePendingBuisness(Object.values(item["_id"])[0]))
+   }
   return (
     
     <tr onClick={handleNavigateClick}>
       
         {columns.map((column, columnIndex) =>
-          column === "_id" ? null : column === "menu" ? (
-            <td key={columnIndex}>
-                <Button variant="warning" className='text-white'
-                 onClick={(e)=>handleBuisnessMenu(e)}>Menu</Button>
-            </td>
-          ) : (
+          column === "_id" ? null  
+          
+           : (
             <td key={columnIndex}>{item[column]}</td>
           )
         )}
-      
+        {isRequireApprove ? <td >
+                 <Button variant="primary" className='text-white' onClick={handleApprove}
+                 >Approve</Button>
+             </td> 
+            : null 
+            }
     </tr>
     
   );

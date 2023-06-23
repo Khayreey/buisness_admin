@@ -8,13 +8,13 @@ import ErrorGettingData from "../../component/ErrorGetingData/ErrorGettingData";
 const Buisness = () => {
 
   const allBuisness = useSelector((state) => state.buisness.allBuisness);
-  const formattedBuisness =  allBuisness.map(({name , phone , email , business_website , contact_name , address})=>{
-      return {name , phone , email , business_website , contact_name , address}
+  const formattedBuisness =  allBuisness.map(({_id ,  name , phone , email , business_website , contact_name , address})=>{
+      return {_id ,  name , phone , email , business_website , contact_name , address}
   })
   const isWaitingForGetBusiness = useSelector(
     (state) => state.buisness.isWaitingForGetBusiness
   );
-  console.log(allBuisness)
+  
   const isErrorGetBuisness = useSelector(
     (state) => state.buisness.errorInGetBusiness
   );

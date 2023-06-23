@@ -128,6 +128,7 @@ export const addNewBuisness = (businessInformation , reset , setError) => {
       console.log(err.message);
       if(err.message === 'dup'){
        await setError('name' , 'Duplicate Buisness Name')
+       window.scrollTo({ top: 0, behavior: "smooth" });
       }
       else {
         dispatch(businessActions.setErrorInGetBusiness(err));
