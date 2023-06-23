@@ -10,7 +10,7 @@ const TableRowItem = ({ to, item, columns , isRequireApprove}) => {
     const navigate = useNavigate()
 
     const handleNavigateClick = ()=>{
-     if(to === 'pending') return 
+     if(to === 'pending' || to === 'orders') return 
      if(!to) return 
      switch (to) {
       case 'buisness':
@@ -39,9 +39,12 @@ const TableRowItem = ({ to, item, columns , isRequireApprove}) => {
     <tr onClick={handleNavigateClick}>
       
         {columns.map((column, columnIndex) =>
-          column === "_id" ? null  
+          column === "_id" && to !== 'orders' ? null  
           
-           : (
+           : 
+           column === '_id' ? <td key={columnIndex}>{Object.values(item[column])[0]}</td>
+           :
+           (
             <td key={columnIndex}>{item[column]}</td>
           )
         )}

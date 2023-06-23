@@ -22,7 +22,7 @@ const rowsOfCurrentPage = data.slice(firstRowOfCurrentPage , lastRowOfCurrentPag
           <thead>
             <tr>
               {columns.map((column, index) =>
-                column === "_id" ? null : <th key={index}>{column}</th>
+                column === "_id" && to !== 'orders' ? null : <th key={index}>{column}</th>
               )}
               {isRequireApprove ? <th>Action</th> : null}
             </tr>

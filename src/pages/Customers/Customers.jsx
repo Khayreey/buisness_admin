@@ -8,7 +8,9 @@ import ErrorGettingData from "../../component/ErrorGetingData/ErrorGettingData";
 const Customers = () => {
 
   const allCustomers = useSelector((state) => state.customer.allCustomers);
- 
+  const formattedCustomers = allCustomers.map(({first_name , ...e})=>{
+      return e
+  })
   const isWaitingForGetCustomers = useSelector(
     (state) => state.customer.isWaitingForGetCustomers
   );
@@ -30,7 +32,7 @@ const Customers = () => {
             allCustomers.length > 0 &&
           <>
           <MainPageText text="customer Table" />
-         <TableView to='customers' columns={Object.keys(allCustomers[0])} data={allCustomers} />
+         <TableView to='customers' columns={Object.keys(formattedCustomers[0])} data={formattedCustomers} />
          </>
         )}
       </Container>
