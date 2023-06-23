@@ -6,37 +6,37 @@ import { useSelector } from "react-redux";
 import SkeltonLoader from '../../component/SkeltonLoader/SkeltonLoader'
 import ErrorGettingData from "../../component/ErrorGetingData/ErrorGettingData";
 import { useDispatch } from 'react-redux';
-import { getAllPendingBusiness } from '../../store/pendingBuisness-actions';
-const PendingBuisness = () => {
+import { getAllPendingDrivers } from '../../store/pendingDrivers-actions'; 
+const PendingDrivers = () => {
     const dispatch = useDispatch()
-    const allPendingBuisness = useSelector((state) => state.pendingBuisness.allPendingBuisness);
+    const allPendingDrivers = useSelector((state) => state.pendingDrivers.allPendingDrivers);
     
-    const isWaitingForGetPendingBusiness = useSelector(
-      (state) => state.pendingBuisness.isWaitingForGetPendingBusiness
+    const isWaitingForGetPendingDrivers = useSelector(
+      (state) => state.pendingDrivers.isWaitingForGetPendingDrivers
     );
    
-    const errorInGetPendingBusiness = useSelector(
-      (state) => state.pendingBuisness.errorInGetPendingBusiness
+    const errorInGetPendingDrivers = useSelector(
+      (state) => state.pendingDrivers.errorInGetPendingDrivers
     );
     const isRequireRender = useSelector(
-        (state) => state.pendingBuisness.isRequireRender
+        (state) => state.pendingDrivers.isRequireRender
       );
     useEffect(()=>{
-        dispatch(getAllPendingBusiness())
+        dispatch(getAllPendingDrivers())
     } ,[isRequireRender])
   return (
     <Container fluid>
-    <MainPageText text="Pending Buisness" />
+    <MainPageText text="Pending Drivers" />
     <Container className="container my-5 pb-4 bg-white rounded-2 shadow-sm">
-      {isWaitingForGetPendingBusiness ? (
+      {isWaitingForGetPendingDrivers ? (
         <SkeltonLoader />
-      ) : errorInGetPendingBusiness ? (
+      ) : errorInGetPendingDrivers ? (
         <ErrorGettingData />
       ) : (
-        allPendingBuisness.length > 0 &&
+        allPendingDrivers.length > 0 &&
         <>
         <MainPageText text="Pending Buisness Table" />
-       <TableView  to='pendingB' isRequireApprove={true} columns={Object.keys(allPendingBuisness[0])} data={allPendingBuisness} />
+       <TableView  to='pendingD' isRequireApprove={true} columns={Object.keys(allPendingDrivers[0])} data={allPendingDrivers} />
        </>
       )}
     </Container>
@@ -44,4 +44,4 @@ const PendingBuisness = () => {
   )
 }
 
-export default PendingBuisness
+export default PendingDrivers

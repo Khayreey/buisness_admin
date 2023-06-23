@@ -16,7 +16,7 @@ const addBuisnessSchema = Yup.object().shape({
     .max(50, "Too Long!")
     .required("Name Required"),
 
-  business_website: Yup.string().matches(URL, "Enter a valid url"),
+  business_website: Yup.string().matches(URL, "Enter a valid url").required('WebSite Is Require'),
   postal_code: Yup.string()
     .max(15, "Max Postal code is 15")
     .min(5, "It Must at least 5")
@@ -25,6 +25,7 @@ const addBuisnessSchema = Yup.object().shape({
     .trim()
     .email("Enter A valid Email")
     .required("E-Mail Required"),
+  password : Yup.string().max(20 , "Max Length is 20").min(3 , "Min Length is 8").required('Buisness Password Require') ,  
   phone: Yup.string()
     .min(11, "Phone Must Be 11 number")
     .max(11, "Phone Must Be 11 number")

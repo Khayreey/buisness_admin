@@ -5,12 +5,13 @@ import {useDispatch} from 'react-redux'
 import { businessActions } from "../../store/buisnessSlice";
 import { customersActions } from "../../store/customerSlice";
 import { approvePendingBuisness } from "../../store/pendingBuisness-actions";
+import { approvePendingDiver } from "../../store/pendingDrivers-actions";
 const TableRowItem = ({ to, item, columns , isRequireApprove}) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
     const handleNavigateClick = ()=>{
-     if(to === 'pending' || to === 'orders') return 
+     if(to === 'pendingB' || to === 'pendingD' || to === 'orders') return 
      if(!to) return 
      switch (to) {
       case 'buisness':
@@ -32,7 +33,12 @@ const TableRowItem = ({ to, item, columns , isRequireApprove}) => {
     }
 
    const handleApprove = ()=>{
-    dispatch(approvePendingBuisness(Object.values(item["_id"])[0]))
+    if(to === 'pendingB') {
+      dispatch(approvePendingBuisness(Object.values(item["_id"])[0]))
+    }else {
+      dispatch(approvePendingDiver(Object.values(item["_id"])[0]))
+    }
+   
    }
   return (
     

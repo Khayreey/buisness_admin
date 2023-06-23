@@ -23,10 +23,15 @@ import {getAllDrivers , getAllAvailableDrivers , getAllUnAvailableDrivers , getA
 from './store/driver-actions'
 import Drivers from "./pages/Drivers/Drivers";
 import PendingBuisness from "./pages/PendingBuisness/PendingBuisness";
+import PendingDrivers from "./pages/PendingDrivers/PendingDrivers";
 function App() {
   const dispatch = useDispatch()
   const isRequireRender = useSelector(
     (state) => state.buisness.isRequireRender
+  );
+
+  const isDriversRequireRender = useSelector(
+    (state) => state.pendingDrivers.isRequireRender
   );
   useEffect(()=>{
     dispatch(getAllBusiness())
@@ -47,7 +52,7 @@ function App() {
   dispatch(getAllAvailableDrivers())
   dispatch(getAllUnAvailableDrivers())
   dispatch(getAllBusyDrivers())
- },[])
+ },[isDriversRequireRender])
   const routers = createBrowserRouter([
     {
       path: "",
@@ -58,6 +63,7 @@ function App() {
         { path: "/buisness", element: <Buisness /> },
         { path: "/buisness/:id", element: <SingleBuisness /> },
         { path: "/pendingBuisness", element: <PendingBuisness /> },
+        { path: "/pendingDrivers", element: <PendingDrivers /> },
         
         { path: "/customers", element: <Customers /> },
         { path: "/customers/:id", element: <SingleCustomer /> },

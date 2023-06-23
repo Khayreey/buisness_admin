@@ -26,7 +26,7 @@ const AddBuisnessForm = () => {
 
     <Container fluid>
    
-    <Container className="container my-5 pb-4 bg-white rounded-2 shadow-sm">
+    <Container className="container my-5 pb-4 bg-white rounded-2 shadow-sm" style={{position : 'relative'}}>
       { isErrorGetBuisness ? (
         <ErrorGettingData />
       ) : (
@@ -37,6 +37,7 @@ const AddBuisnessForm = () => {
         initialValues={{
           name: "",
           phone: "",
+          password : "" ,
           email: "",
           business_website : "" , 
           contact_name : "" , 
@@ -63,6 +64,13 @@ const AddBuisnessForm = () => {
                 name='email' 
                 label="Email"
                 placeholder="Enter Buisness Email"
+                icon={faEnvelope}
+              />  
+               <CustomInput
+                name='password' 
+                label="Password"
+                placeholder="Enter Buisness Password"
+                type='password'
                 icon={faEnvelope}
               />  
                <CustomInput

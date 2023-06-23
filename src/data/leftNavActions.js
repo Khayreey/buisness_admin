@@ -30,7 +30,9 @@ const leftNavActions = [
   },
   {
     lists: [
-      { link: "/drivers", txt: "Get All Drivers" },
+      { link: "/drivers", txt: "All Drivers" },
+      { link: "/pendingDrivers", txt: "Pending Drivers" },
+      
     ],
     listAction: "Manage Drivers",
     icon : 'fa-solid fa-motorcycle'
