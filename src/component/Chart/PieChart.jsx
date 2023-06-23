@@ -1,5 +1,6 @@
 import React from "react";
 import "./pie.css";
+import { useSelector } from "react-redux";
 import { ResponsiveContainer } from "recharts";
 import {
   PieChart,
@@ -20,11 +21,14 @@ import {
 import {} from "recharts";
 import { Col } from "react-bootstrap";
 const PieChartt = () => {
+  const available = useSelector((state)=>state.driver.allAvailableDrivers).length || 0
+  const busy = useSelector((state)=>state.driver.allBusyDrivers).length || 0
+  const unAvailable = useSelector((state)=>state.driver.allUnAvailableDrivers).length || 0
   //   data to first dash
   const data01 = [
-    { name: "Available Drivers", value: 400 },
-    { name: "Busy Drivers", value: 100 },
-    { name: "Not available Drivers", value: 300 },
+    { name: "Available Drivers", value: available },
+    { name: "Busy Drivers", value: busy },
+    { name: "Not available Drivers", value: unAvailable },
   ];
 
   //  data to second dash
