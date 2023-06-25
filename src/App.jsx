@@ -56,9 +56,11 @@ function App() {
     (state) => state.buisness.isRequireRender
   );
 
-  const isDriversRequireRender = useSelector(
+  const isPendingDriversRequireRender = useSelector(
     (state) => state.pendingDrivers.isRequireRender
   );
+  const isDriversRequireRender = useSelector((state) => state.driver.isRequireRender);
+
   useEffect(() => {
     dispatch(getAllBusiness());
   }, [isRequireRender]);
@@ -76,7 +78,7 @@ function App() {
     dispatch(getAllAvailableDrivers());
     dispatch(getAllUnAvailableDrivers());
     dispatch(getAllBusyDrivers());
-  }, [isDriversRequireRender]);
+  }, [isDriversRequireRender , isPendingDriversRequireRender]);
   const routers = createBrowserRouter([
     {
       path: "",

@@ -69,7 +69,7 @@ export const updateCustomer = (id , customerInformation) => {
       dispatch(customersActions.setWaitingFalse());
       dispatch(customersActions.clearCustomerError());
       dispatch(customersActions.requireRender());
-      dispatch(toastActions.setToast({message : `Buisness Updated` , close : 5000 , type : 'success' }))
+      dispatch(toastActions.setToast({message : `Customer Updated` , close : 5000 , type : 'success' }))
     } catch (err) {
       console.log(err);
       dispatch(customersActions.setErrorInGetCustomers(err));
@@ -94,7 +94,7 @@ export const deleteCustomer = (id , navigateFn) => {
       dispatch(customersActions.setWaitingFalse());
       dispatch(customersActions.clearCustomerError());
       dispatch(customersActions.requireRender());
-      dispatch(toastActions.setToast({message : `Business Deleted` , close : 5000 , type : 'success' }))
+      dispatch(toastActions.setToast({message : `Customer Deleted` , close : 5000 , type : 'success' }))
       navigateFn()
     } catch (err) {
       console.log(err);

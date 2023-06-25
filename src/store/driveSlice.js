@@ -12,6 +12,7 @@ const driverSlice = createSlice({
         isWaitingForGetDrivers : true , 
         numOfallDrivers : 0 , 
         errorInGetDrivers : null , 
+        isRequireRender : false
     }
     ,
     reducers : {
@@ -73,6 +74,9 @@ const driverSlice = createSlice({
                  default : 
                  state.driversForPreview = state.allDrivers
             }
+        } ,
+        requireRender(state){
+            state.isRequireRender = !state.isRequireRender
         }
     }
 })

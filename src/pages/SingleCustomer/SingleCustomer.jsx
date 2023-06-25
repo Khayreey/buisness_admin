@@ -20,7 +20,7 @@ const SingleCustomer = () => {
     (state) => state.customer.selectedCustomers
   );
 
-  console.log(selectedCustomers);
+  
   const isWaitingForGetCustomers = useSelector(
     (state) => state.customer.isWaitingForGetCustomers
   );
