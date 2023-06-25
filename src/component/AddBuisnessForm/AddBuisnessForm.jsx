@@ -12,6 +12,7 @@ import { addNewBuisness } from "../../store/bus-actions";
 
 import ErrorGettingData from "../ErrorGetingData/ErrorGettingData";
 import SkeltonLoader from "../SkeltonLoader/SkeltonLoader";
+import OverLoader from "../OverLoader/OverLoader";
 const AddBuisnessForm = () => {
   const dispatch = useDispatch()
   
@@ -27,6 +28,7 @@ const AddBuisnessForm = () => {
     <Container fluid>
    
     <Container className="container my-5 pb-4 bg-white rounded-2 shadow-sm" style={{position : 'relative'}}>
+      {isWaitingForGetBusiness ? <OverLoader /> : null}
       { isErrorGetBuisness ? (
         <ErrorGettingData />
       ) : (

@@ -23,7 +23,7 @@ const leftNavActions = [
   
   {
     lists: [
-      { link: "/customers", txt: "Get All Customers" },
+      { link: "/customers", txt: "All Customers" },
     ],
     listAction: "Manage Customers",
     icon : 'fas fa-users'

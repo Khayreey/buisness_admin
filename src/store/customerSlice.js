@@ -7,7 +7,8 @@ const customerSlice = createSlice({
         selectedCustomers : {} ,
         isWaitingForGetCustomers : true , 
         numOfallCustomers: 0 , 
-        errorInGetCustomers : null
+        errorInGetCustomers : null,
+        isRequireRender : false
     }
     ,
     reducers : {
@@ -31,6 +32,9 @@ const customerSlice = createSlice({
         } ,
         clearCustomerError(state){
             state.errorInGetCustomers = null
+        } , 
+        requireRender(state){
+            state.isRequireRender = !state.isRequireRender
         }
     }
 })

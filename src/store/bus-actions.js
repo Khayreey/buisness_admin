@@ -1,5 +1,5 @@
 import { businessActions } from "./buisnessSlice";
-
+import {toastActions} from './toastSlice'
 export const getAllBusiness = () => {
   return async (dispatch) => {
     const getAll = async () => {
@@ -69,6 +69,7 @@ export const updateBuisness = (id , businessInformation) => {
       dispatch(businessActions.setWaitingFalse());
       dispatch(businessActions.clearBusinessError());
       dispatch(businessActions.requireRender());
+      dispatch(toastActions.setToast({message : `Buisness Updated` , close : 5000 , type : 'success' }))
     } catch (err) {
       console.log(err);
       dispatch(businessActions.setErrorInGetBusiness(err));
@@ -93,6 +94,7 @@ export const deleteBuisness = (id , navigateFn) => {
       dispatch(businessActions.setWaitingFalse());
       dispatch(businessActions.clearBusinessError());
       dispatch(businessActions.requireRender());
+      dispatch(toastActions.setToast({message : `Business Deleted` , close : 5000 , type : 'success' }))
       navigateFn()
     } catch (err) {
       console.log(err);
@@ -122,6 +124,7 @@ export const addNewBuisness = (businessInformation , reset , setError) => {
       dispatch(businessActions.setWaitingFalse());
       dispatch(businessActions.clearBusinessError());
       dispatch(businessActions.requireRender());
+      dispatch(toastActions.setToast({message : `Business Added` , close : 5000 , type : 'success' }))
       reset()
     } catch (err) {
       dispatch(businessActions.setWaitingFalse());
@@ -133,8 +136,7 @@ export const addNewBuisness = (businessInformation , reset , setError) => {
       else {
         dispatch(businessActions.setErrorInGetBusiness(err));
       }
-      
-      
+            
     }
   };
 };

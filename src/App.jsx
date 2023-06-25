@@ -1,31 +1,57 @@
 import React, { useEffect } from "react";
 import Home from "./pages/Home/Home";
-import {
-  RouterProvider,
-  createBrowserRouter,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainNavigation from "./pages/MainNavigation/MainNavigation";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AddBuisness from "./pages/AddBuisness/AddBuisness";
 import ContactUs from "./pages/ContactUs/ContactUs";
-import {useDispatch , useSelector} from 'react-redux'
-import {getAllBusiness} from './store/bus-actions'
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBusiness } from "./store/bus-actions";
 import Buisness from "./pages/Buisness/Buisness";
 import SingleBuisness from "./pages/SingleBuisness/SingleBuisness";
 import BuisnessMenu from "./pages/BuisnessMenu/BuisnessMenu";
 import { getAllCustomers } from "./store/customer-actions";
-import {getAllOrders} from './store/order-actions'
+import { getAllOrders } from "./store/order-actions";
 import Customers from "./pages/Customers/Customers";
 import SingleCustomer from "./pages/SingleCustomer/SingleCustomer";
 import SingleDriver from "./pages/SingleDriver/SingleDriver";
 import Orders from "./pages/Orders/Orders";
-import {getAllDrivers , getAllAvailableDrivers , getAllUnAvailableDrivers , getAllBusyDrivers}
-from './store/driver-actions'
+import {
+  getAllDrivers,
+  getAllAvailableDrivers,
+  getAllUnAvailableDrivers,
+  getAllBusyDrivers,
+} from "./store/driver-actions";
 import Drivers from "./pages/Drivers/Drivers";
 import PendingBuisness from "./pages/PendingBuisness/PendingBuisness";
 import PendingDrivers from "./pages/PendingDrivers/PendingDrivers";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const toastToDisplay = useSelector((state) => state.toast.toast);
+  const notify = (message, type, close) =>
+    toast(message, {
+      position: "top-right",
+      autoClose: close,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      type: type,
+    });
+  useEffect(() => {
+    if (toastToDisplay.message === "") return;
+    notify(toastToDisplay.message, toastToDisplay.type, toastToDisplay.close);
+    return () => toast.dismiss();
+  }, [toastToDisplay]);
+  const isCustomerRequireRender = useSelector(
+    (state) => state.customer.isRequireRender
+  );
   const isRequireRender = useSelector(
     (state) => state.buisness.isRequireRender
   );
@@ -33,26 +59,24 @@ function App() {
   const isDriversRequireRender = useSelector(
     (state) => state.pendingDrivers.isRequireRender
   );
-  useEffect(()=>{
-    dispatch(getAllBusiness())
-    
-  },[isRequireRender])
+  useEffect(() => {
+    dispatch(getAllBusiness());
+  }, [isRequireRender]);
 
- useEffect(()=>{
-  dispatch(getAllCustomers())
- },[])
+  useEffect(() => {
+    dispatch(getAllCustomers());
+  }, [isCustomerRequireRender]);
 
- useEffect(()=>{
-  dispatch(getAllOrders())
- },[])
+  useEffect(() => {
+    dispatch(getAllOrders());
+  }, []);
 
-
- useEffect(()=>{
-  dispatch(getAllDrivers())
-  dispatch(getAllAvailableDrivers())
-  dispatch(getAllUnAvailableDrivers())
-  dispatch(getAllBusyDrivers())
- },[isDriversRequireRender])
+  useEffect(() => {
+    dispatch(getAllDrivers());
+    dispatch(getAllAvailableDrivers());
+    dispatch(getAllUnAvailableDrivers());
+    dispatch(getAllBusyDrivers());
+  }, [isDriversRequireRender]);
   const routers = createBrowserRouter([
     {
       path: "",
@@ -64,7 +88,7 @@ function App() {
         { path: "/buisness/:id", element: <SingleBuisness /> },
         { path: "/pendingBuisness", element: <PendingBuisness /> },
         { path: "/pendingDrivers", element: <PendingDrivers /> },
-        
+
         { path: "/customers", element: <Customers /> },
         { path: "/customers/:id", element: <SingleCustomer /> },
         { path: "/drivers", element: <Drivers /> },
@@ -79,7 +103,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={routers} />;
-  
+  return (
+    <>
+      <RouterProvider router={routers} />;
+      <ToastContainer />
+    </>
+  );
 }
 export default App;

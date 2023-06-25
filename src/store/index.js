@@ -5,6 +5,7 @@ import ordersSlice from './orderSlice'
 import driverSlice from './driveSlice'
 import pendingBuisnessSlice from './pendingBuisnessSlice'
 import pendingDriversSlice from './pendingDriversSlice'
+import toastSlice from './toastSlice'
 const store = configureStore({
     reducer : {
         buisness : buisnessSlice.reducer ,
@@ -12,7 +13,8 @@ const store = configureStore({
         order : ordersSlice.reducer  ,
         driver : driverSlice.reducer , 
         pendingBuisness : pendingBuisnessSlice.reducer , 
-        pendingDrivers : pendingDriversSlice.reducer
+        pendingDrivers : pendingDriversSlice.reducer , 
+        toast : toastSlice.reducer ,
     }
 })
 
