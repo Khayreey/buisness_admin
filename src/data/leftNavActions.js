@@ -15,7 +15,7 @@ const leftNavActions = [
   },
   {
     lists: [
-      { link: "/orders", txt: "Get All Orders" },
+      { link: "/orders", txt: "All Orders" },
     ],
     listAction: "Manage Orders",
     icon : 'fa-solid fa-cart-shopping'

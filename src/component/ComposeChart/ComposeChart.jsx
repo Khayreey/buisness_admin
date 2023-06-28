@@ -40,7 +40,7 @@ const ComposeChart = () => {
   return (
     // <di className="col-md-5   ">
     <Col md={5} sm={3} className="bg-white rounded m-2 shadow-sm">
-      <h3 className="text-center my-3">Drivers Chart</h3>
+      <h3 className="text-center my-3">Buisness Chart</h3>
       <div
         style={{ position: "relative", width: "100%", padding: "250px 0px" }}
       >

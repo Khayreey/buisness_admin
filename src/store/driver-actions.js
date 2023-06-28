@@ -172,7 +172,7 @@ export const getAllAvailableDrivers = () => {
         dispatch(driversActions.setWaitingFalse());
         dispatch(driversActions.clearDriverError());
         dispatch(driversActions.requireRender());
-        dispatch(toastActions.setToast({message : `Business Deleted` , close : 5000 , type : 'success' }))
+        dispatch(toastActions.setToast({message : `Driver Deleted` , close : 5000 , type : 'success' }))
         navigateFn()
       } catch (err) {
         console.log(err);

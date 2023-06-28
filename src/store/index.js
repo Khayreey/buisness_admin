@@ -6,6 +6,7 @@ import driverSlice from './driveSlice'
 import pendingBuisnessSlice from './pendingBuisnessSlice'
 import pendingDriversSlice from './pendingDriversSlice'
 import toastSlice from './toastSlice'
+import authSlice from './authSlice'
 const store = configureStore({
     reducer : {
         buisness : buisnessSlice.reducer ,
@@ -15,6 +16,7 @@ const store = configureStore({
         pendingBuisness : pendingBuisnessSlice.reducer , 
         pendingDrivers : pendingDriversSlice.reducer , 
         toast : toastSlice.reducer ,
+        auth : authSlice.reducer
     }
 })
 

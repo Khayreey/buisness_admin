@@ -8,7 +8,7 @@ const HomeCard = () => {
   const numOfDrivers = useSelector((state)=>state.driver.numOfallDrivers)
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid ms-3">
       <div className="row justify-content-between">
         <AnalysticCard
           iconColor="#4154f1"

@@ -32,7 +32,7 @@ const Orders = () => {
         ) : (
             allOrders.length > 0 &&
           <>
-          <MainPageText text="Order Table" />
+          <MainPageText text="Order List" />
          <TableView to='orders' columns={Object.keys(formattedOrders[0])} data={formattedOrders} />
          </>
         )}

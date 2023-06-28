@@ -1,4 +1,6 @@
 import { pendingBuisnessActions } from "./pendingBuisnessSlice";
+import {toastActions} from './toastSlice'
+
 export const getAllPendingBusiness = () => {
   return async (dispatch) => {
     const getAll = async () => {
@@ -47,6 +49,7 @@ export const approvePendingBuisness = (id) => {
       dispatch(pendingBuisnessActions.setWaitingFalse());
       dispatch(pendingBuisnessActions.requireRender());
       dispatch(pendingBuisnessActions.clearBusinessError());
+      dispatch(toastActions.setToast({message : `Buisness Approved` , close : 5000 , type : 'success' }))
     } catch (err) {
       dispatch(pendingBuisnessActions.setErrorInGetBusiness(err));
       dispatch(pendingBuisnessActions.setWaitingFalse());

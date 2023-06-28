@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Home from "./pages/Home/Home";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Navigate, RouterProvider, createBrowserRouter } from "react-router-dom";
 import MainNavigation from "./pages/MainNavigation/MainNavigation";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import AddBuisness from "./pages/AddBuisness/AddBuisness";
@@ -27,10 +27,12 @@ import PendingBuisness from "./pages/PendingBuisness/PendingBuisness";
 import PendingDrivers from "./pages/PendingDrivers/PendingDrivers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SingleOrder from "./pages/SingleOrder/SingleOrder";
+import AddAdmin from "./pages/AddAdmin/AddAdmin";
 
 function App() {
   const dispatch = useDispatch();
-
+  
   const toastToDisplay = useSelector((state) => state.toast.toast);
   const notify = (message, type, close) =>
     toast(message, {
@@ -90,13 +92,15 @@ function App() {
         { path: "/buisness/:id", element: <SingleBuisness /> },
         { path: "/pendingBuisness", element: <PendingBuisness /> },
         { path: "/pendingDrivers", element: <PendingDrivers /> },
-
         { path: "/customers", element: <Customers /> },
         { path: "/customers/:id", element: <SingleCustomer /> },
         { path: "/drivers", element: <Drivers /> },
         { path: "/drivers/:id", element: <SingleDriver /> },
         { path: "/orders", element: <Orders /> },
+        { path: "/orders/:id", element: <SingleOrder /> } , 
         { path: "/contactus", element: <ContactUs /> },
+        { path: "/addadmin", element: <AddAdmin /> },
+        
       ],
     },
     {
@@ -104,7 +108,7 @@ function App() {
       element: <LoginPage />,
     },
   ]);
-
+  
   return (
     <>
       <RouterProvider router={routers} />;

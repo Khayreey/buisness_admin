@@ -6,13 +6,17 @@ import LogImage from "../../assets/images/blockchain.png";
 import { Formik } from "formik";
 import CustomInput from "../CustomInput/CustomInput";
 import { faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import loginSchema from "../../validationSchema/loginSchema";
+import { loginHandler } from "../../store/auth-actions";
+import { useDispatch } from "react-redux";
 
 const Login = () => {
   const [isLoginLoading, setIsLoginLoading] = useState(false);
+  const dispatch = useDispatch()
   return (
-    <Card className="m-2 col-lg-4 col-md-8 col-sm-11" style={{ height: "95%" }}>
+    <Card className="m-2 col-lg-4 col-md-8 col-sm-11" style={{ height: "80%" }}>
       <Card.Img
-        style={{ height: "35vh", width: "100%", objectFit: "contain" }}
+        style={{ height: "35%", width: "100%", objectFit: "contain" }}
         className="p-4"
         variant="top"
         src={LogImage}
@@ -20,10 +24,13 @@ const Login = () => {
       <Card.Title className="p-2 text-primary border-bottom border-1">
         LOG IN
       </Card.Title>
-
+      <Card.Body style={{height : '70%' , overflow : 'auto'}}>
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values, helpers) => {}}
+        onSubmit={(values, {setFieldError}) => {
+          dispatch(loginHandler(values.email , values.password , setFieldError))
+        }}
+        validationSchema={loginSchema}
       >
         {({ handleSubmit }) => {
           return (
@@ -33,7 +40,7 @@ const Login = () => {
               noValidate
               style={{ height: "100%" }}
             >
-              <Card.Body>
+              
                 <CustomInput
                   name="email"
                   label="Email"
@@ -47,8 +54,8 @@ const Login = () => {
                   type="password"
                   icon={faLock}
                 />
-              </Card.Body>
-              <Card.Footer>
+             
+             
                 <Button
                   className="w-100"
                   disabled={isLoginLoading}
@@ -69,11 +76,12 @@ const Login = () => {
                     </>
                   )}
                 </Button>
-              </Card.Footer>
+              
             </Form>
           );
         }}
       </Formik>
+      </Card.Body>
     </Card>
   );
 };

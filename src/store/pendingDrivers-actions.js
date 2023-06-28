@@ -1,4 +1,4 @@
-
+import {toastActions} from './toastSlice'
 import { pendingDriversActions } from "./pendingDriversSlice";
 export const getAllPendingDrivers = () => {
   return async (dispatch) => {
@@ -48,6 +48,7 @@ export const approvePendingDiver = (id) => {
       dispatch(pendingDriversActions.setWaitingFalse());
       dispatch(pendingDriversActions.requireRender());
       dispatch(pendingDriversActions.clearPendingDriversError());
+      dispatch(toastActions.setToast({message : `Driver Approved` , close : 5000 , type : 'success' }))
     } catch (err) {
       dispatch(pendingDriversActions.setErrorInGetPendingDrivers(err));
       dispatch(pendingDriversActions.setWaitingFalse());

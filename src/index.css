@@ -13,3 +13,6 @@ body {
 .collapse.show {
   display: block;
 }
+a{
+  text-decoration: none;
+}

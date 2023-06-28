@@ -15,7 +15,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    overflow: auto;
+    
   }
   @media only screen and (max-width:1000px) {
     .authBackground{

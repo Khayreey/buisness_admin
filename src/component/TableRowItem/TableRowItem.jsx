@@ -11,7 +11,7 @@ const TableRowItem = ({ to, item, columns , isRequireApprove}) => {
     const navigate = useNavigate()
 
     const handleNavigateClick = ()=>{
-     if(to === 'pendingB' || to === 'pendingD' || to === 'orders') return 
+     if(to === 'pendingB' || to === 'pendingD' ) return 
      if(!to) return 
      switch (to) {
       case 'buisness':

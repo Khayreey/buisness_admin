@@ -7,26 +7,29 @@ import {
   InputGroup,
   Image,
   NavDropdown,
-  Offcanvas,
-  Button,
 } from "react-bootstrap";
 import DelImg from "../../assets/images/del.png";
-import UserImg from "../../assets/images/pic.jpg";
-
-import { faMagnifyingGlass, faHouse } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import UserImg from "../../assets/images/pic.png";
+import './style.css'
+import { useSelector , useDispatch } from "react-redux";
+import { authActions } from "../../store/authSlice";
+import { Link } from "react-router-dom";
 const TopNav = ({ isNotActive, setNotActive }) => {
-  var barsIcon = <i className="fas fa-bars fs-2" style={{color : 'rgb(2, 36, 71)'}}></i>;
+  const dispatch = useDispatch()
+  const userEmail = useSelector((state) => state.auth.userEmail);
+  console.log(userEmail)
+  var barsIcon = (
+    <i className="fas fa-bars fs-2" style={{ color: "rgb(2, 36, 71)" }}></i>
+  );
   var crossIcon = <i className="fa-solid fa-xmark fs-2"></i>;
-  const [serchFilter, setSearchFilter] = useState("buisness");
-  const handleSearchFilter = (e) => {
-    setSearchFilter(() => {
-      return e;
-    });
-  };
+
+  const logoutHandler = ()=>{
+      dispatch(authActions.userLogout())
+  }
+
   return (
     <Navbar
-      className='shadow'
+      className="shadow"
       bg="white"
       expand="lg"
       style={{ position: "fixed", top: "0", width: "100%", zIndex: "10" }}
@@ -40,9 +43,7 @@ const TopNav = ({ isNotActive, setNotActive }) => {
           <span className={isNotActive ? "text-primary" : "hidden"}>
             {barsIcon}
           </span>
-          <span
-            className={isNotActive ? "text-primary hidden" : ""}
-          >
+          <span className={isNotActive ? "text-primary hidden" : ""}>
             {crossIcon}
           </span>
         </button>
@@ -61,39 +62,8 @@ const TopNav = ({ isNotActive, setNotActive }) => {
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll" style={{ height: "50%" }}>
-          <Form
-            className="me-auto my-2 my-lg-0 mx-lg-5 d-flex"
-            style={{ width: "100%" }}
-          >
-            <InputGroup className="me-2">
-              <InputGroup.Text>
-                <NavDropdown title={serchFilter} onSelect={handleSearchFilter}>
-                  <NavDropdown.Item eventKey="buisness">
-                    {" "}
-                    Buisness{" "}
-                  </NavDropdown.Item>
-                  <NavDropdown.Item eventKey="customers">
-                    Customers
-                  </NavDropdown.Item>
-                  <NavDropdown.Item eventKey="Drivers">
-                    {" "}
-                    Drivers{" "}
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </InputGroup.Text>
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <InputGroup.Text>
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </InputGroup.Text>
-            </InputGroup>
-          </Form>
-
-          <Nav className="d-flex justify-content-center align-items-center mx-4">
+        <Navbar.Collapse id="navbarScroll" className="justify-content-end">
+          <Nav className="d-flex justify-content-center align-items-center">
             <Image
               alt="logo"
               src={UserImg}
@@ -102,10 +72,17 @@ const TopNav = ({ isNotActive, setNotActive }) => {
               roundedCircle
               className="border border-1 border-primary p-1"
             />
-            <NavDropdown title="Ahmed Khayreey" className="mx-4">
-              <NavDropdown.Item>Customers</NavDropdown.Item>
-              <NavDropdown.Item> Drivers </NavDropdown.Item>
-              <NavDropdown.Item> Buisness </NavDropdown.Item>
+            <NavDropdown title={userEmail} className="mx-4">
+              <NavDropdown.Item className='d-flex justify-content-between align-items-center' onClick={logoutHandler}>
+                Log Out
+                <i class="fa-solid fa-right-from-bracket text-muted"></i>
+                </NavDropdown.Item>
+              <NavDropdown.Item className='d-flex justify-content-between align-items-center'>
+                <Link to='/addadmin'>
+                Add Admin
+                </Link>
+                <i class="fa-solid fa-user-plus text-muted"></i>
+                 </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
