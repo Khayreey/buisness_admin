@@ -6,7 +6,8 @@ export const getAllCustomers = () => {
       const data = await fetch("http://127.0.0.1:8000/admin/get_all_customers");
 
       const response = await data.json();
-      const formatResponse = response.map(({ password , cart , ...e})=>{
+      let jsonData = JSON.parse(response)
+      const formatResponse = jsonData.map(({ password , cart , ...e})=>{
             return e
       }) 
       return formatResponse

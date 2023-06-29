@@ -8,13 +8,15 @@ import CustomInput from "../CustomInput/CustomInput";
 import { faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import loginSchema from "../../validationSchema/loginSchema";
 import { loginHandler } from "../../store/auth-actions";
-import { useDispatch } from "react-redux";
-
+import { useDispatch , useSelector} from "react-redux";
+import OverLoader from '../OverLoader/OverLoader'
 const Login = () => {
-  const [isLoginLoading, setIsLoginLoading] = useState(false);
+  const isLoginLoading = useSelector((state)=>state.auth.isWaitingForLogin)
+  const errorInLogin = useSelector((state)=>state.auth.errorInLogin)
   const dispatch = useDispatch()
   return (
     <Card className="m-2 col-lg-4 col-md-8 col-sm-11" style={{ height: "80%" }}>
+      {isLoginLoading ? <OverLoader /> : null}
       <Card.Img
         style={{ height: "35%", width: "100%", objectFit: "contain" }}
         className="p-4"
@@ -54,7 +56,9 @@ const Login = () => {
                   type="password"
                   icon={faLock}
                 />
-             
+             {errorInLogin ? <div className='container alert alert-danger'>
+                  {errorInLogin}
+             </div> : null}
              
                 <Button
                   className="w-100"
