@@ -19,19 +19,26 @@ import {
 
 import {} from "recharts";
 import { Col } from "react-bootstrap";
+import { useSelector } from "react-redux";
 const ComposeChart = () => {
  
+   const allBuisness = useSelector((state)=>state.buisness.allBuisness)
+   const numOfRes  =   allBuisness &&  allBuisness.filter((item)=> item.type ==='Restaurant').length
+   const numOfMarket  =  allBuisness && allBuisness.filter((item)=> item.type ==='Market').length
+   const numOfResOrders = useSelector((state)=>state.buisness.numOfResOrders)
+   const numOfMarketOreders = useSelector((state)=>state.buisness.numOfMarketOreders)
+
     const data = [
         {
           name: "Resturant",
-          number: 50,
-          totalOrders: 800,
+          number: numOfRes,
+          totalOrders: numOfResOrders,
          
         },
         {
           name: "Super Market",
-          number: 590,
-          totalOrders: 800,
+          number: numOfMarket,
+          totalOrders: numOfMarketOreders,
          
         },
        

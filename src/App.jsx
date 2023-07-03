@@ -6,7 +6,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import AddBuisness from "./pages/AddBuisness/AddBuisness";
 import ContactUs from "./pages/ContactUs/ContactUs";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllBusiness } from "./store/bus-actions";
+import { getAllBusiness, getAllMarketOrders, getAllResOrders } from "./store/bus-actions";
 import Buisness from "./pages/Buisness/Buisness";
 import SingleBuisness from "./pages/SingleBuisness/SingleBuisness";
 import BuisnessMenu from "./pages/BuisnessMenu/BuisnessMenu";
@@ -65,10 +65,14 @@ function App() {
 
   useEffect(() => {
     dispatch(getAllBusiness());
+    dispatch(getAllResOrders());
+    dispatch(getAllMarketOrders());
+    
   }, [isRequireRender]);
 
   useEffect(() => {
     dispatch(getAllCustomers());
+   
   }, [isCustomerRequireRender]);
 
   useEffect(() => {

@@ -27,6 +27,51 @@ export const getAllBusiness = () => {
   };
 };
 
+
+export const getAllResOrders = () => {
+  return async (dispatch) => {
+    const getAll = async () => {
+      const data = await fetch("http://127.0.0.1:8000/admin/get_restaurants_orders");
+      const response = await data.json();
+      return response.length
+    };
+    try {
+      dispatch(businessActions.setWaitingTrue());
+      const data = await getAll();
+      dispatch(businessActions.setWaitingFalse());
+      dispatch(businessActions.setNumOfResOrders(data));
+      dispatch(businessActions.clearBusinessError());
+    } catch (err) {
+      console.log(err);
+      dispatch(businessActions.setErrorInGetBusiness(err));
+      dispatch(businessActions.setWaitingFalse());
+    }
+  };
+};
+
+
+export const getAllMarketOrders = () => {
+  return async (dispatch) => {
+    const getAll = async () => {
+      const data = await fetch("http://127.0.0.1:8000/admin/get_market_orders");
+      const response = await data.json();
+      
+      return response.length
+    };
+    try {
+      dispatch(businessActions.setWaitingTrue());
+      const data = await getAll();
+      dispatch(businessActions.setWaitingFalse());
+      dispatch(businessActions.setNumOfMarketOrders(data));
+      dispatch(businessActions.clearBusinessError());
+    } catch (err) {
+      console.log(err);
+      dispatch(businessActions.setErrorInGetBusiness(err));
+      dispatch(businessActions.setWaitingFalse());
+    }
+  };
+};
+
 export const getSingleBusiness = (id) => {
   return async (dispatch) => {
     const getAll = async () => {

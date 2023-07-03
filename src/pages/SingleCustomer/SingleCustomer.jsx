@@ -56,8 +56,10 @@ const SingleCustomer = () => {
             <>
               <Formik
                 initialValues={{
+                  first_name: selectedCustomers.first_name,
+                  last_name: selectedCustomers.last_name,
                   email: selectedCustomers.email,
-                  name: selectedCustomers.name,
+                  
                   phone: selectedCustomers.phone,
 
                   address: selectedCustomers.address,
@@ -70,8 +72,14 @@ const SingleCustomer = () => {
                   return (
                     <Form className="w-100" onSubmit={handleSubmit}>
                       <CustomInput
-                        name="name"
-                        label="Name"
+                        name="first_name"
+                        label="First Name"
+                        isUpdate={true}
+                        icon={faEnvelope}
+                      />
+                      <CustomInput
+                        name="last_name"
+                        label="Last Name"
                         isUpdate={true}
                         icon={faEnvelope}
                       />

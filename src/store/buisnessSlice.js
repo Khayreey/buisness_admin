@@ -9,7 +9,8 @@ const buisnessSlice = createSlice({
         numOfallBuisness : 0 , 
         errorInGetBusiness : null , 
         isRequireRender : false , 
-        
+        numOfResOrders : 0 , 
+        numOfMarketOreders : 0 ,
     }
     ,
     reducers : {
@@ -19,6 +20,12 @@ const buisnessSlice = createSlice({
             state.isWaitingForGetBusiness = false
             state.errorInGetBusiness = null
         } , 
+        setNumOfResOrders(state,action){
+            state.numOfResOrders = action.payload   
+        } ,  
+        setNumOfMarketOrders(state,action){
+            state.numOfMarketOreders = action.payload
+        }  ,    
         setWaitingTrue(state){
             state.isWaitingForGetBusiness = true
         } ,

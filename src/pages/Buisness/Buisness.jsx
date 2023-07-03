@@ -11,6 +11,8 @@ const Buisness = () => {
   const formattedBuisness =  allBuisness.map(({_id ,  name , phone , email , business_website , contact_name , address})=>{
       return {_id ,  name , phone , email , business_website , contact_name , address}
   })
+
+  console.log(formattedBuisness)
   const isWaitingForGetBusiness = useSelector(
     (state) => state.buisness.isWaitingForGetBusiness
   );

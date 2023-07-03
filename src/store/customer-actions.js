@@ -4,12 +4,12 @@ export const getAllCustomers = () => {
   return async (dispatch) => {
     const getAll = async () => {
       const data = await fetch("http://127.0.0.1:8000/admin/get_all_customers");
-
       const response = await data.json();
       let jsonData = JSON.parse(response)
-      const formatResponse = jsonData.map(({ password , cart , ...e})=>{
+      const formatResponse = jsonData.map(({  confirm_password , password , cart , ...e})=>{
             return e
       }) 
+      console.log(formatResponse)
       return formatResponse
     };
     try {
